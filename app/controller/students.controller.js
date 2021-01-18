@@ -41,7 +41,7 @@ exports.getById = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-   if (req.body.first_name && req.body.last_name && req.body.bio && req.body.profile_picture) {
+   if (req.body.first_name && req.body.last_name) {
       try {
          const etudiant = await Student.create(req.body);
          return etudiant;
@@ -50,7 +50,7 @@ exports.create = async (req, res) => {
       }
      } else {
       res.status(400)
-      res.json({ 'message': 'bad request' });
+      res.json({ 'message': 'Tous les paramètres pour la création du compte étudiant n ont pas été envoyés' });
    }
 }
 
