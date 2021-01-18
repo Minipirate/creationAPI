@@ -25,6 +25,17 @@ const Student = studentModel(sequelize, DataTypes);
 const User = userModel(sequelize, DataTypes);
 const Lesson = lessonModel(sequelize, DataTypes);
 
+
+//créer la relation One-to-one entre User(cible) et Student(source)
+// la clef étrangère est égale à la clef primaire de student
+// avec belongsTo, si on supprime la cible on supprime la source avec
+Student.hasOne(User); //insère la clef étrangère dans la cible donc table users va contenir clef étrangère nommée studentId
+User.belongsTo(Student); //insère la clef étrangère dans la source -> studentId
+
+
+
+
+
 const initDb = () => {
   return sequelize.sync({force : true})
   .then (_ => { // le then s'exécute si le sync s'est bien éxécuté
@@ -42,9 +53,7 @@ const initDb = () => {
   })
 }
 
-//créer la relation One-to-one entre User et Student
-//db.students.hasOne(db.users);
-//db.users.belongsTo(db.students);
+
 
 //db.students.belongsToMany(db.lessons, { through: 'LessonStudents' });
 //db.lessons.belongsToMany(db.students, { through: 'LessonStudents' });

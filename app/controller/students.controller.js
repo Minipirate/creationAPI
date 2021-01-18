@@ -40,14 +40,13 @@ exports.getById = async (req, res) => {
    }  
 }
 
-/*exports.create = async (req, res) => {
-   if (req.body.first_name && req.body.last_name && req.body.birthdate && req.body.bio && req.body.class_name) {
+exports.create = async (req, res) => {
+   if (req.body.first_name && req.body.last_name && req.body.bio && req.body.profile_picture) {
       try {
-         let rep = await Student.create(req.body)
-         res.json(rep);
+         const etudiant = await Student.create(req.body);
+         return etudiant;
       } catch (e) {
-         res.status(500)
-         res.json({ "error": e });
+         erreurCall(e, res);
       }
      } else {
       res.status(400)
@@ -56,7 +55,7 @@ exports.getById = async (req, res) => {
 }
 
 
-exports.addLesson = async (req, resp) => {
+/*exports.addLesson = async (req, resp) => {
    try {
       let student = await Student.findByPk(req.params.id2)
       let lesson = await Lesson.findByPk(req.params.id1)

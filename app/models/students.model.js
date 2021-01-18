@@ -14,9 +14,6 @@ module.exports = (sequelize, Sequelize) => {
       bio: {
         type: Sequelize.TEXT
       },
-      class_name: {
-        type:Sequelize.STRING
-      },
       birthdate: {
         type:Sequelize.DATE
       },
